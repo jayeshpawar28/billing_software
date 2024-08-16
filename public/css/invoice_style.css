@@ -1,0 +1,164 @@
+body {
+  position: relative;
+  width: 14.85cm;
+  height: 21cm;
+  margin: 0 auto;
+  color: #001028;
+  background: #FFFFFF;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  border: 1px solid black;
+}
+
+header {
+  padding: 10px 10px;
+  margin-bottom: 30px;
+}
+
+#logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#logo img {
+  width: 90px;
+}
+
+h1 {
+  border-top: 1px solid #5D6975;
+  border-bottom: 1px solid #5D6975;
+  color: #5D6975;
+  font-size: 2.4em;
+  line-height: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+#company, #supplier {
+  float: left;
+  width: 50%;
+  margin-bottom: 18px;
+}
+
+#project {
+  float: right;
+  width: 50%;
+  margin-bottom: 18px;
+}
+
+#project span, #supplier span {
+  color: #5D6975;
+  text-align: right;
+  width: 52px;
+  margin-right: 10px;
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+#company div, #supplier div {
+  white-space: nowrap;
+}
+
+table {
+  width: 100%;
+  padding: 10px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  border: 1px solid black;
+
+}
+
+table tr:nth-child(2n-1) td {
+  background: #F5F5F5;
+}
+
+table th, table td {
+  text-align: center;
+}
+
+table th {
+  padding: 5px 20px;
+  color: #5D6975;
+  border-bottom: 1px solid black;
+  white-space: nowrap;
+  font-weight: normal;
+}
+
+table .service, table .desc {
+  text-align: left;
+}
+
+table td {
+  padding: 20px;
+  text-align: right;
+}
+
+table td.service, table td.desc {
+  vertical-align: top;
+}
+
+table td.unit, table td.qty, table td.total {
+  font-size: 1.2em;
+}
+
+table td.grand {
+  border-top: 1px solid black;
+}
+
+footer {
+  color: #5D6975;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid black;
+  padding: 8px 0;
+  text-align: center;
+}
+
+#payment_section {
+  overflow: hidden;
+  padding: 10px;
+}
+
+#payment_details {
+  float: right;
+  width: 40%;
+  font-weight: light 
+}
+
+#payment_details h3 {
+  font-weight: 300; /* Light font weight */
+}
+
+#notices {
+  clear: both;
+  margin-top: 20px;
+}
+
+.amount{
+  float: right;
+
+}
+
+#signature_section {
+  position: absolute;
+  bottom: 50px; /* Adjust this value if necessary to fit above the footer */
+  width: 100%;
+  text-align: center;
+}
+
+.signature_line {
+  border-top: 1px solid black;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.signature_label {
+  color: #5D6975;
+  font-size: 15px;
+  float: right;
+  margin: 8px 62px;
+}
