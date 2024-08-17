@@ -13,6 +13,10 @@ class PurchaseController extends Controller
 {
     public function purchase_save(Request $req)
     {
+        $req->validate([
+            'supplier_fk' => 'required|gt:0'
+        ]);
+
         $temp_data = TempPur_Model::orderBy('temp_purchase_pk', 'ASC')->get();
         $res_data = $temp_data->toArray();
 
@@ -221,6 +225,9 @@ class PurchaseController extends Controller
 
     public function update_save(Request $req, $id)
     {
+        $req->validate([
+            'paid_amt' => 'numeric'
+        ]);
         $purchase = PurchaseModel::find($id);
 
         if($purchase){

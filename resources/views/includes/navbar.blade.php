@@ -6,17 +6,19 @@
     <a href="#" class="sidebar-toggler flex-shrink-0">
         <i class="fa fa-bars"></i>
     </a>
-    <form class="d-none d-md-flex ms-4">
-        <input class="form-control border-0" type="search" placeholder="Search">
-    </form>
-    <div class="navbar-nav align-items-center ms-auto">
-        
+
+    <!-- Add a flex-grow-1 div to push the content to the center -->
+    <div class="d-flex justify-content-center flex-grow-1">
+        <h4 class="text-primary mb-0">Billing Soft</h4>
+    </div>
+
+    <div class="navbar-nav align-items-center">
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <span class=""><b>{{ucfirst(Auth::user()->username)}}</b></span>
+                <span class=""><b>{{ ucfirst(Auth::user()->username) }}</b></span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <a href="{{route('logout')}}" class="dropdown-item">Log Out</a>
+                <a href="{{ route('logout') }}" class="dropdown-item">Log Out</a>
             </div>
         </div>
     </div>

@@ -16,16 +16,21 @@
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">Sale > Add</h6>
                         <div class="buttons">
-                            @include('Sale.tabs')
+                            @include('sale.tabs')
                         </div>
                     </div>
                     <div class="col-8">
-                        <select class="form-select" aria-label="Default select example" name="product_fk">
+                        <select class="form-select @error('product_fk') is-invalid @enderror" aria-label="Default select example" name="product_fk">
                             <option selected>--Select Product--</option>
                             @foreach ($products as $product)
                                 <option value="{{ $product->product_pk }}">{{ $product->product_name }}</option>
                             @endforeach
                         </select>
+                        <span class="text-danger">
+                            @error('product_fk')
+                                {{ $message }}
+                            @enderror
+                        </span>
                     </div>
                     <div class="col-2">
                         <button type="submit" class="btn btn-primary float-start">ADD</button>

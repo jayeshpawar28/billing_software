@@ -15,7 +15,9 @@
                 <div class="row bg-light p-4 rounded h-100">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <h6 class="mb-0">Purchase > Detail</h6>
-                            @include('purchase.tabs')
+                            <div class="buttons">
+                                @include('purchase.tabs')
+                            </div>
                         </div>
                 </div>
 

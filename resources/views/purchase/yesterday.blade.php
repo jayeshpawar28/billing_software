@@ -10,13 +10,15 @@
 
 
         <div class="container-fluid pt-4 px-4">
-            <form method="POST" action="{{route('temp_purchase_save')}}">
+            <form method="POST" action="{{ route('temp_purchase_save') }}">
                 @csrf
                 <div class="row bg-light p-4 rounded h-100">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h6 class="mb-0">Purchase > Yesterday</h6>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Purchase > Yesterday</h6>
+                        <div class="buttons">
                             @include('purchase.tabs')
                         </div>
+                    </div>
                 </div>
 
             </form>

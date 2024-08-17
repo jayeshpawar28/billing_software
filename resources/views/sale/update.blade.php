@@ -15,7 +15,9 @@
             <div class="row bg-light p-4 rounded h-100">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h6 class="mb-0">sale > Update</h6>
-                    @include('sale.tabs')
+                    <div class="buttons">
+                        @include('sale.tabs')
+                    </div>
                 </div>
             </div>
 
@@ -24,20 +26,27 @@
         <!-- Table Start -->
         <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
-                <form action="{{route('sale_update_save', $data->sale_pk)}}" method="POST">
+                <form action="{{ route('sale_update_save', $data->sale_pk) }}" method="POST">
                     @csrf
                     <div class="bg-light rounded h-100 p-4">
+                        <span class="text-danger my-2">
+                            @error('paid_amt')
+                                {{$message}}
+                            @enderror
+                        </span>
                         {{-- <h6 class="mb-4">Details > sale</h6> --}}
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <h6 class="mb-0">Update > sale</h6>
-                            
+
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-2">
                                 sale Date :
                             </div>
                             <div class="col-md-4">
-                                <input type="date" value="@if(isset($data->sale_date)){{$data->sale_date}}@endif" class="form-control" name="sale_date">
+                                <input type="text"
+                                    value="@if (isset($data->sale_date)) {{ $data->sale_date }} @endif"
+                                    class="form-control" name="sale_date">
 
                             </div>
 
@@ -102,11 +111,14 @@
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $row->product->product_name }}</td>
                                             <td>
-                                                <input type="number" name="rate" id="rate-{{ $row->sale_product_pk }}" value="{{ $row->rate }}">
+                                                <input type="number" name="rate" id="rate-{{ $row->sale_product_pk }}"
+                                                    value="{{ $row->rate }}">
                                             </td>
                                             <td>
-                                                <input type="number" name="qty" id="qty-{{ $row->sale_product_pk }}" value="{{ $row->qty }}">
-                                                <span class="btn btn-success btn-sm" onclick="updateProduct({{ $row->sale_product_pk }})">Change</span>
+                                                <input type="number" name="qty" id="qty-{{ $row->sale_product_pk }}"
+                                                    value="{{ $row->qty }}">
+                                                <span class="btn btn-success btn-sm"
+                                                    onclick="updateProduct({{ $row->sale_product_pk }})">Change</span>
                                             </td>
                                             <td>{{ $row->amount }}</td>
 
@@ -125,7 +137,7 @@
                                 Total Amount :
                             </div>
                             <div class="col-md-4">
-                                <input type="number" value="@if(isset($total_amount)){{$total_amount}}@endif"
+                                <input type="text" value="@if (isset($total_amount)) {{ $total_amount }} @endif"
                                     class="form-control" name="total_amount" id="total_amount" readonly>
                             </div>
 
@@ -133,7 +145,8 @@
                                 Paid Amount :
                             </div>
                             <div class="col-md-4">
-                                <input type="number" value="@if(isset($data->paid_amt)){{$data->paid_amt}}@endif"
+                                <input type="text"
+                                    value="@if (isset($data->paid_amt)) {{ $data->paid_amt }} @endif"
                                     class="form-control" name="paid_amt" id="paid_amt">
                             </div>
                         </div>
@@ -165,7 +178,6 @@
                         url = url.replace(':id', sale_product_pk).replace(':sale_pk', sale_pk);
                         window.location.href = url + '?rate=' + rate + '&qty=' + qty;
                     }
-
                 </script>
 
             </div>

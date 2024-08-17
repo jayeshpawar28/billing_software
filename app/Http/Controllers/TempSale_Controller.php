@@ -20,6 +20,10 @@ class TempSale_Controller extends Controller
 
     public function temp_sale_save(Request $req)
     {
+        $req->validate([
+            'product_fk' => 'required|gt:0'
+        ]);
+        
         $product_fk = $req->product_fk;
         $product = ProductModel::find($product_fk);
         $product_rate = $product->product_rate;

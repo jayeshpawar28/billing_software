@@ -15,7 +15,9 @@
                 <div class="row bg-light p-4 rounded h-100">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <h6 class="mb-0">sale > Yesterday</h6>
-                            @include('sale.tabs')
+                            <div class="buttons">
+                                @include('sale.tabs')
+                            </div>
                         </div>
                 </div>
 

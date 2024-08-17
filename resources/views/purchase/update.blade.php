@@ -15,7 +15,9 @@
             <div class="row bg-light p-4 rounded h-100">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h6 class="mb-0">Purchase > Update</h6>
-                    @include('purchase.tabs')
+                    <div class="buttons">
+                        @include('purchase.tabs')
+                    </div>
                 </div>
             </div>
 
@@ -24,21 +26,27 @@
         <!-- Table Start -->
         <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
-                <form action="{{route('update_save', $data->purchase_pk)}}" method="POST">
+                <form action="{{ route('update_save', $data->purchase_pk) }}" method="POST">
                     @csrf
-                {{-- {{route('update_save', $data->purchase_pk)}} --}}
+                    {{-- {{route('update_save', $data->purchase_pk)}} --}}
                     <div class="bg-light rounded h-100 p-4">
+                        <span class="text-danger m-2">
+                            @error('paid_amt')
+                                {{$message}}
+                            @enderror
+                        </span>
                         {{-- <h6 class="mb-4">Details > Purchase</h6> --}}
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <h6 class="mb-0">Update > Purchase</h6>
-                            
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-2">
                                 Purchase Date :
                             </div>
                             <div class="col-md-4">
-                                <input type="date" value="@if(isset($data->purchase_date)){{$data->purchase_date}}@endif" class="form-control" name="purchase_date">
+                                <input type="text"
+                                    value="@if (isset($data->purchase_date)) {{ $data->purchase_date }} @endif"
+                                    class="form-control" name="purchase_date">
 
                             </div>
 
@@ -103,67 +111,72 @@
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $row->product->product_name }}</td>
                                             <td>
-                                                <form method="POST" action="{{ route('new_product_update', ['id' => $row->purchase_product_pk, 'purchase_pk' => $data->purchase_pk]) }}">
+                                                <form method="POST"
+                                                    action="{{ route('new_product_update', ['id' => $row->purchase_product_pk, 'purchase_pk' => $data->purchase_pk]) }}">
                                                     @csrf
                                                     <input type="number" name="rate" value="{{ $row->rate }}">
                                             </td>
                                             <td>
                                                 <input type="number" name="qty" value="{{ $row->qty }}">
                                                 <button type="submit" class="btn btn-success btn-sm">Change</button>
-                                                </form>
-                                            </td>
-                                            <td>{{ $row->amount }}</td>
-
-                                        </tr>
-                                        @php
-                                            $total_amount += $row->amount;
-                                        @endphp
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <h6 class="my-4">Payment Details :</h6>
-                        <div class="row mb-2">
-                            <div class="col-md-2">
-                                Total Amount :
-                            </div>
-                            <div class="col-md-4">
-                                <input type="number" value="@if(isset($total_amount)){{$total_amount}}@endif"
-                                    class="form-control" name="total_amount" id="total_amount" readonly>
-                            </div>
-
-                            <div class="col-md-2">
-                                Paid Amount :
-                            </div>
-                            <div class="col-md-4">
-                                <input type="number" value="@if(isset($data->paid_amt)){{$data->paid_amt}}@endif"
-                                    class="form-control" name="paid_amt" id="paid_amt">
-                            </div>
-                        </div>
-
-                        <div class="row mb-2">
-
-
-                            <div class="col-md-2">
-                                Remark :
-                            </div>
-                            <div class="col-md-4">
-                                <textarea class="form-control" name="remark">@if (isset($data->remark)){{ $data->remark }}@endif</textarea>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-success my-2">Save</button>
-                        </div>
-
-                    </div>
-
                 </form>
-                
+                </td>
+                <td>{{ $row->amount }}</td>
+
+                </tr>
+                @php
+                    $total_amount += $row->amount;
+                @endphp
+                @endforeach
+
+                </tbody>
+                </table>
+            </div>
+
+            <h6 class="my-4">Payment Details :</h6>
+            <div class="row mb-2">
+                <div class="col-md-2">
+                    Total Amount :
+                </div>
+                <div class="col-md-4">
+                    <input type="text" value="@if (isset($data->total_amount)) {{ $data->total_amount }} @endif"
+                        class="form-control" name="total_amount" id="total_amount" readonly>
+                </div>
+
+                <div class="col-md-2">
+                    Paid Amount :
+                </div>
+                <div class="col-md-4">
+                    <input type="text" value="@if (isset($data->paid_amt)) {{ $data->paid_amt }} @endif"
+                        class="form-control" name="paid_amt" id="paid_amt">
+                </div>
+            </div>
+
+            <div class="row mb-2">
+
+
+                <div class="col-md-2">
+                    Remark :
+                </div>
+                <div class="col-md-4">
+                    <textarea class="form-control" name="remark">
+                @if (isset($data->remark))
+                {{ $data->remark }}
+                @endif
+                </textarea>
+                </div>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-success my-2">Save</button>
             </div>
 
         </div>
-        <!-- Table End -->
-    @endsection
+
+        </form>
+
+    </div>
+
+    </div>
+    <!-- Table End -->
+@endsection

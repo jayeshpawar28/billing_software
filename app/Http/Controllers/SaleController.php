@@ -13,6 +13,10 @@ class SaleController extends Controller
 {
     public function sale_save(Request $req)
     {
+        $req->validate([
+            'customer_fk' => 'required|gt:0'
+        ]);
+
         $temp_data = TempSale_Model::orderBy('temp_sale_pk', 'ASC')->get();
         $res_data = $temp_data->toArray();
 
@@ -176,6 +180,10 @@ class SaleController extends Controller
 
     public function sale_update_save(Request $req, $id)
     {
+        $req->validate([
+            'paid_amt' => 'numeric'
+        ]);
+        
         $sale = SaleModel::find($id);
 
         if($sale){

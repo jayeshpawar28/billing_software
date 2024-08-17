@@ -10,14 +10,16 @@
 
 
         <div class="container-fluid pt-4 px-4">
-           
-                @csrf
-                <div class="row bg-light p-4 rounded h-100">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h6 class="mb-0">sale > Detail</h6>
-                            @include('sale.tabs')
-                        </div>
+
+            @csrf
+            <div class="row bg-light p-4 rounded h-100">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">sale > Detail</h6>
+                    <div class="buttons">
+                        @include('sale.tabs')
+                    </div>
                 </div>
+            </div>
 
         </div>
 
@@ -29,27 +31,30 @@
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <h6 class="mb-0">Details > sale</h6>
                             <div class="buttons">
-                            <a class="btn btn-sm btn-warning" href="{{route('sale_update', $data->sale_pk)}}"     target="_blank">Update</a> | 
-                             <a class="btn btn-sm btn-danger" href="{{route('sale_delete', $data->sale_pk)}}">Delete</a> | 
-                             <a class="btn btn-sm btn-success" href="{{route('sale_print', $data->sale_pk)}}" target="_blank">Print</a>
+                                <a class="btn btn-sm btn-warning" href="{{ route('sale_update', $data->sale_pk) }}"
+                                    target="_blank">Update</a> |
+                                <a class="btn btn-sm btn-danger"
+                                    href="{{ route('sale_delete', $data->sale_pk) }}">Delete</a> |
+                                <a class="btn btn-sm btn-success" href="{{ route('sale_print', $data->sale_pk) }}"
+                                    target="_blank">Print</a>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-2">
                                 sale Date :
                             </div>
-                            <div class="col-md-4"> 
+                            <div class="col-md-4">
                                 @if (isset($data->sale_date))
-                                {{ \Carbon\Carbon::parse($data->sale_date)->format('d-m-Y')}}
+                                    {{ \Carbon\Carbon::parse($data->sale_date)->format('d-m-Y') }}
                                 @endif
                             </div>
-                            
+
                             <div class="col-md-2">
                                 Bill No. :
                             </div>
-                            <div class="col-md-4"> 
+                            <div class="col-md-4">
                                 @if (isset($data->bill_no))
-                                    {{$data->bill_no;}}
+                                    {{ $data->bill_no }}
                                 @endif
                             </div>
                         </div>
@@ -58,17 +63,17 @@
                             <div class="col-md-2">
                                 Customer Name :
                             </div>
-                            <div class="col-md-4"> 
+                            <div class="col-md-4">
                                 @if (isset($data->customer_fk))
-                                    {{$data->customer->customer_name;}}
+                                    {{ $data->customer->customer_name }}
                                 @endif
                             </div>
                             <div class="col-md-2">
                                 Contact No. :
                             </div>
-                            <div class="col-md-4"> 
+                            <div class="col-md-4">
                                 @if (isset($data->customer->mobile))
-                                    {{$data->customer->mobile;}}
+                                    {{ $data->customer->mobile }}
                                 @endif
                             </div>
                         </div>
@@ -77,9 +82,9 @@
                             <div class="col-md-2">
                                 Address :
                             </div>
-                            <div class="col-md-4"> 
+                            <div class="col-md-4">
                                 @if (isset($data->customer->address))
-                                    {{$data->customer->address;}}
+                                    {{ $data->customer->address }}
                                 @endif
                             </div>
                         </div>
@@ -98,7 +103,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                     @foreach ($sale_products as $row)
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
@@ -108,9 +113,8 @@
                                             <td>{{ formatIndianCurrency($row->amount) }}</td>
 
                                         </tr>
-                                        
                                     @endforeach
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -120,18 +124,18 @@
                             <div class="col-md-2">
                                 Total Amount :
                             </div>
-                            <div class="col-md-4"> 
+                            <div class="col-md-4">
                                 @if (isset($data->total_amount))
-                                    <b>{{formatIndianCurrency($data->total_amount)}}</b>
+                                    <b>{{ formatIndianCurrency($data->total_amount) }}</b>
                                 @endif
                             </div>
-                            
+
                             <div class="col-md-2">
                                 Paid Amount :
                             </div>
-                            <div class="col-md-4"> 
+                            <div class="col-md-4">
                                 @if (isset($data->paid_amt))
-                                    <b>{{formatIndianCurrency($data->paid_amt)}}</b>
+                                    <b>{{ formatIndianCurrency($data->paid_amt) }}</b>
                                 @endif
                             </div>
                         </div>
@@ -140,18 +144,18 @@
                             <div class="col-md-2">
                                 Pending Amount :
                             </div>
-                            <div class="col-md-4"> 
+                            <div class="col-md-4">
                                 @if (isset($data->pending_amt))
-                                    <b>{{formatIndianCurrency($data->pending_amt)}}</b>
+                                    <b>{{ formatIndianCurrency($data->pending_amt) }}</b>
                                 @endif
                             </div>
-                            
+
                             <div class="col-md-2">
                                 Remark :
                             </div>
-                            <div class="col-md-4"> 
+                            <div class="col-md-4">
                                 @if (isset($data->remark))
-                                    {{$data->remark}}
+                                    {{ $data->remark }}
                                 @endif
                             </div>
                         </div>

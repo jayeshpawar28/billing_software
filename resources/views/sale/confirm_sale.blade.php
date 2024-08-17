@@ -67,7 +67,7 @@
                                 <div class="row mb-2">
                                     <div class="col-md-6">
                                         Select Customer :
-                                        <select class="form-select" aria-label="Default select example" name="customer_fk">
+                                        <select class="form-select @error('customer_fk') is-invalid @enderror" aria-label="Default select example" name="customer_fk">
                                             <option selected>--Select Customer--</option>
                                             @foreach ($customers as $customer)
                                                 <option value="{{ $customer->customer_pk }}">{{ $customer->customer_name }}</option>

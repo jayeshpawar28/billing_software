@@ -2,18 +2,22 @@
 <div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-light navbar-light">
         <a href="index.html" class="navbar-brand mx-4 mb-3">
-            <h4 class="text-primary"></i>Billing Soft</h4>
+            <h4 class=""></i>@if(Auth::check())
+                {{ucfirst(Auth::user()->username) }}
+            @else
+                Guest
+            @endif</h4>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
             <div class="ms-3">
                 {{-- <h6 class="mb-0">{{ Auth::user()->username ?? 'Guest' }}</h6> --}}
                 {{-- <h6 class="mb-0">{{ Auth::user()->username }}</h6> --}}
-                <h6 class="mb-0">@if(Auth::check())
+                {{-- <h6 class="mb-0">@if(Auth::check())
                     {{ucfirst(Auth::user()->username) }}
                 @else
                     Guest
                 @endif
-                </h6>
+                </h6> --}}
                 {{-- <span>Admin</span> --}}
             </div>
         </div>
