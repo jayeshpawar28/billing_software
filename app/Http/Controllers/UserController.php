@@ -49,7 +49,7 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt($checklist)) {
-            $req->session()->regenerate();
+            // $req->session()->regenerate();
             return redirect()->route('home');
         }else{
             return redirect()->route('login')->with('error', 'Invalid Login or Password');

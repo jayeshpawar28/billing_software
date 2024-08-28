@@ -23,10 +23,8 @@ class ValidMiddleware
         //     return redirect()->route('login')->with('error', 'User not login');
         // }
         if (Auth::check()) {
-            Log::info('User is authenticated', ['user_id' => Auth::id()]);
             return $next($request);
         } else {
-            Log::info('User is not authenticated');
             return redirect()->route('login')->with('error', 'User not logged in');
         }
     
