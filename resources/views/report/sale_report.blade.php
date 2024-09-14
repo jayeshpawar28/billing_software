@@ -91,7 +91,7 @@
                                     <tr>
                                         <th scope="row">{{$loop->iteration}}</th>
                                         <td>@if ($row->sale_date){{ \Carbon\Carbon::parse($row->sale_date)->format('d-m-Y')}}@endif</td>
-                                        <td>@if ($row->bill_no)<a href="{{route('sale_detail', $row->sale_pk)}}">{{$row->bill_no}}</a>@endif</td>
+                                        <td>@if ($row->bill_no)<a href="{{route('sale_detail', $row->sale_pk)}}">{{$row->bill_no}}</a>@else {{$row->bill_no}} @endif</td>
                                         <td>@if ($row->customer->customer_name){{$row->customer->customer_name}}@endif</td>
                                         <td>@if ($row->count){{$row->count}}@endif</td>
                                         <td class="text-end">@if ($row->total_amount){{formatIndianCurrency($row->total_amount)}}@endif</td>

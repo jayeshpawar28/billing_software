@@ -8,11 +8,6 @@
 
         <!-- Navbar End -->
 
-
-
-
-
-
         <div class="container-fluid pt-4 px-4">
             <form method="POST"
                 action="{{ isset($supplier) ? route('supplier_update', $supplier->supplier_pk) : route('supplier_save') }}">

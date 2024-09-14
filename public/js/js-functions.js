@@ -5,5 +5,5 @@ function rowClick(routeName, selectedPk){
 }
 
 function formatIndianCurrency($number) {
-    return '₹' . number_format($number, 2, '.', ',');
+    return number_format($number, 2, '.', ',');
 }
