@@ -29,6 +29,6 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         // Other route middleware
         // 'validuser' => \App\Http\Middleware\ValidMiddleware::class,
-
+        'permission' => \App\Http\Middleware\PermissionMiddleware::class,
     ];
 }

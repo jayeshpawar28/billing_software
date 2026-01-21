@@ -5,6 +5,17 @@
     --dark: #191C24;
 }
 
+/* Ensure footer stays at bottom */
+.container-xxl {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
 .back-to-top {
     position: fixed;
     display: none;

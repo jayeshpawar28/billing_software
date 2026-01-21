@@ -11,8 +11,12 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TempPur_Controller;
 use App\Http\Controllers\TempSale_Controller;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserAccessController;
 use App\Http\Middleware\ValidMiddleware;
+use App\Http\Middleware\PermissionMiddleware;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\ResumeController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -20,15 +24,26 @@ Route::get('/', function () {
 
 
 
-//Login Route Start----------------------------------------------------------------
-    Route::controller(UserController::class)->group(function () {
-        Route::get('login', 'login')->name('login');
-        Route::get('create_account', 'create_account')->name('create_account');
-        Route::post('account_save', 'account_save')->name('account_save');
-        Route::post('login_check', 'login_check')->name('login_check');
-        Route::get('logout', 'logout')->name('logout');
-    });
-//Login Route End----------------------------------------------------------------
+// Login Route Start----------------------------------------------------------------
+Route::controller(UserController::class)->prefix('user')->group(function () {
+    Route::get('login', 'login')->name('login');
+    Route::get('create_account', 'create_account')->name('create_account');
+    Route::post('account_save', 'account_save')->name('account_save');
+    Route::post('login_check', 'login_check')->name('login_check');
+    Route::get('logout', 'logout')->name('logout');
+});
+// Login Route End----------------------------------------------------------------
+
+
+// Login Route Start----------------------------------------------------------------
+Route::controller(UserController::class)->prefix('user')->group(function () {
+    Route::get('login', 'login')->name('login');
+    Route::get('create_account', 'create_account')->name('create_account');
+    Route::post('account_save', 'account_save')->name('account_save');
+    Route::post('login_check', 'login_check')->name('login_check');
+    Route::get('logout', 'logout')->name('logout');
+});
+// Login Route End----------------------------------------------------------------
 
 
 Route::middleware([ValidMiddleware::class])->group(function () {
@@ -150,5 +165,26 @@ Route::middleware([ValidMiddleware::class])->group(function () {
         Route::post('purchase_filter', 'purchase_filter')->name('purchase_filter');
     });
     // report route end
+
+    // User Access Management routes
+    Route::controller(UserAccessController::class)->prefix('user_access')->name('user_access.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('user_roles/{userId}', 'userRoles')->name('user_roles');
+        Route::post('assign_roles/{userId}', 'assignRoles')->name('assign_roles');
+        Route::get('role_permissions/{roleId}', 'rolePermissions')->name('role_permissions');
+        Route::post('assign_permissions/{roleId}', 'assignPermissions')->name('assign_permissions');
+        Route::get('manage_roles', 'manageRoles')->name('manage_roles');
+        Route::get('create_role', 'createRole')->name('create_role');
+        Route::post('store_role', 'storeRole')->name('store_role');
+        Route::get('edit_role/{roleId}', 'editRole')->name('edit_role');
+        Route::put('update_role/{roleId}', 'updateRole')->name('update_role');
+        Route::get('delete_role/{roleId}', 'deleteRole')->name('delete_role');
+    });
+
+    // Resume Analysis Route Start----------------------------------------------------------------
+    Route::get('/resume/analyze', function () {
+        return view('upload');
+    })->name('resume.analyze');
+    Route::post('/resume/analyze', [ResumeController::class, 'analyze'])->name('resume.analyze.post');
 
 });
